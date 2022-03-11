@@ -1,0 +1,25 @@
+class Solution {
+    public List<String> letterCasePermutation(String s) {
+        List<String> ans = new ArrayList<>();
+        if(s.length()==0){return ans;}
+        
+        fun(s.toCharArray(),ans,0);
+        return ans;
+    }
+    private void fun(char[] s,List<String> ans,int i){
+        if(i==s.length){
+                ans.add(new String(s));
+                return;
+        }
+        if(Character.isDigit(s[i])){
+                fun(s,ans,i+1);
+                
+        }
+        else{   s[i] = Character.toLowerCase(s[i]);
+                fun(s,ans,i+1);
+             
+                s[i] = Character.toUpperCase(s[i]);
+                fun(s,ans,i+1);
+        }
+    }
+}
