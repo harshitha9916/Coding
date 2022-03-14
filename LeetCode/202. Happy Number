@@ -1,0 +1,26 @@
+class Solution {
+    public static int update(int n){
+        int sum=0;
+        while(n>0){
+            int r=n%10;
+            sum+=r*r;
+            n = n/10;
+        }
+        return sum;
+        
+    }
+    
+    public boolean isHappy(int n) {
+        Set<Integer> s = new HashSet<Integer>();
+        
+        while(n!=1){
+            if(n==1){break;}
+            if(!s.contains(n)){s.add(n);}
+            else{
+                return false;
+            }
+            n = update(n);   
+        }  
+        return true;
+    }
+}
