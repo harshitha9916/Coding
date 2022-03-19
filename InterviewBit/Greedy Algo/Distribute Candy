@@ -1,0 +1,25 @@
+public class Solution {
+    public int candy(ArrayList<Integer> A) {
+        int[] candies=new int[A.size()];
+        candies[0] = 1;
+        for(int i=1;i<=A.size()-1;i++){
+            if(A.get(i)>A.get(i-1)){
+                candies[i]=candies[i-1]+1;
+            }
+            else{
+                candies[i]=1;
+            }
+        }
+        for(int i=A.size()-2;i>=0;i--){
+            if(A.get(i)>A.get(i+1) && candies[i]<=candies[i+1]){
+                candies[i]=candies[i+1]+1;
+            }
+        }
+        int ans=0;
+        for(int i=0;i<=candies.length-1;i++){
+            ans+=candies[i];
+        }
+        return ans;
+        
+    }
+}
