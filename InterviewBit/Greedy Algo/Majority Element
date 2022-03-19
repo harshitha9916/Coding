@@ -1,0 +1,16 @@
+public class Solution {
+    // DO NOT MODIFY THE ARGUMENTS WITH "final" PREFIX. IT IS READ ONLY
+    public int majorityElement(final int[] A) {
+        int e = A[0];
+        int count=1;
+        for(int i=1;i<A.length;i++){
+            if(A[i]==e) count++;
+            else{count--;}
+            if(count==0){
+                e=A[i];
+                count=1;
+            }
+        }
+        return e;
+    }
+}
