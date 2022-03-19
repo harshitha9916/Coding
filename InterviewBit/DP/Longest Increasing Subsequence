@@ -1,0 +1,19 @@
+public class Solution {
+    // DO NOT MODIFY THE LIST. IT IS READ ONLY
+    public int lis(final List<Integer> A) {
+        int sol =1;
+        int[] val = new int[A.size()];
+        Arrays.fill(val,1);
+        for(int i=1;i<A.size();i++){
+            for(int j=0;j<i;j++){
+                if(A.get(j)<A.get(i)){
+                    val[i] = Math.max(val[i],val[j]+1);
+                    }
+                if(sol<val[i]){
+                    sol=val[i];
+                    }
+            }
+        }
+        return sol;
+    }
+}
