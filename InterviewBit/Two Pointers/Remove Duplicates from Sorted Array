@@ -1,0 +1,13 @@
+public class Solution {
+	public int removeDuplicates(ArrayList<Integer> a) {
+	    int index = 1, i, l = a.size();
+	    for(i = 1; i < l; i++){
+	        int c = a.get(i), p = a.get(i - 1);
+	        if(c == p)
+	            continue;
+	        else     
+	            a.set(index++, c);     
+	    }
+	    return index;
+	}
+}
