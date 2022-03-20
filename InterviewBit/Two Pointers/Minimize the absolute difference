@@ -1,0 +1,19 @@
+public class Solution {
+    public int solve(ArrayList<Integer> A, ArrayList<Integer> B, ArrayList<Integer> C) {
+    int min = Integer.MAX_VALUE;
+    int i=A.size()-1, j = B.size()-1,k=C.size()-1;
+    int m=0,n=0,o=0;
+    while(m<=i && n<=j && o<=k){
+        int a = A.get(m), b = B.get(n),c = C.get(o);
+        int cur = Math.max(a,Math.max(b,c)) - Math.min(a, Math.min(b,c));
+        if(cur<min){
+            min = cur;
+        }
+        int max = Math.min(a,Math.min(b,c));
+        if(max == a) m=m+1;
+        else if(max == b) n=n+1;
+        else{o=o+1;}
+    }
+    return min;
+    }
+}
