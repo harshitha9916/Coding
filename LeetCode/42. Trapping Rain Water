@@ -26,3 +26,30 @@ class Solution {
         
     }
 }
+/*
+
+class Solution {
+    public int trap(int[] A) {
+
+
+        int n =  A.length;
+        if(n<=2){return 0;}
+        int leftmax=A[0], rightmax=A[n-1];
+        int l=1,r = n-2,tw=0;
+        while(l<=r){
+            if(leftmax < rightmax){
+                if(A[l]>=leftmax) leftmax=A[l];
+                else{ tw+=leftmax-A[l];}
+                l=l+1;
+            }
+            else{
+                if(A[r]>=rightmax) rightmax=A[r];
+                else{ tw+=rightmax-A[r];}
+                r=r-1;
+            }
+        }
+        return tw;
+        
+    }
+}
+*/
