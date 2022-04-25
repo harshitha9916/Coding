@@ -1,0 +1,31 @@
+public class Solution {
+    public int maxProduct(final List<Integer> A) {
+        if(A.size()==1){return A.get(0);}
+        int pp=1,np=1,max = Integer.MIN_VALUE;
+        boolean haszero= false,haspos=false;
+        for(int i : A){
+            if(i>0){
+                pp=pp*i;
+                if(np!=1){
+                    np =np*i;
+                }
+            }
+            else if (i<0){
+                int temp =pp;
+                pp =Math.max(1,np*i);
+                np = temp *i;
+
+            }
+            else{
+                haszero=true;
+                pp=1;
+                np=1;
+            }
+            if(max<pp){
+                max =pp;
+            }
+        }
+        if(max==1){if(haszero){return 0;}}
+        return max;
+    }
+}
