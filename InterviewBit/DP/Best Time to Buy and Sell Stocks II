@@ -1,0 +1,12 @@
+public class Solution {
+    
+    public int maxProfit(final List<Integer> A) {
+        int c=0;
+        for(int i=1;i<A.size();i++){
+            if(A.get(i) > A.get(i-1)){
+                    c+=A.get(i)-A.get(i-1);
+            }
+        }
+        return c;
+    }
+}
