@@ -1,0 +1,28 @@
+class Solution {
+    
+    //Using Sorting Method
+    
+    public String longestCommonPrefix(String[] strs) {
+         
+        int n = strs.length-1;
+        //below two conditions are optional
+        if (n == -1)
+            return "";
+ 
+        if (n == 0)
+            return strs[0];
+        Arrays.sort(strs);
+        int min = Math.min(strs[0].length(),strs[n].length());
+        int i=0;
+        
+        while(i<min){
+            if(strs[0].charAt(i)!=strs[n].charAt(i)){
+                break;
+            }
+            i++;
+        }
+        return strs[0].substring(0,i);
+        
+    }
+}
+//T.C - O(MAX*NlogN)
