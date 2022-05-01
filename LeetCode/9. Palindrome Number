@@ -1,0 +1,21 @@
+class Solution {
+    public boolean isPalindrome(long x) {
+        if(x<0) return false;
+        long div =1;
+        while(x>=div*10){
+            div=div*10;
+        }
+        while(x!=0){
+            
+            long right = x%10;
+            long left = x/div;
+            
+            if(right !=left) return false;
+            
+            x = (x%div)/10;
+            div = div/100;
+        }
+        return true;
+        
+    }
+}
