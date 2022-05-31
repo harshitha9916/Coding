@@ -1,21 +1,48 @@
+/*------------------------transpose & reversing Inplace-------------------*/
+// T.C = O(2*N*N)
+// S.C = O(1)
 class Solution {
     public void rotate(int[][] matrix) {
-        for(int i =0;i<matrix.length;i++){
-            for(int j =i;j<matrix[0].length;j++){
+        
+        int r = matrix.length;
+        int c = matrix[0].length;
+       
+        for(int i=0;i<r;i++){
+            for(int j=i;j<c;j++){
                 int t = matrix[i][j];
-                matrix[i][j] = matrix[j][i];
-                matrix[j][i] = t;
+                matrix[i][j] = matrix[j][i] ;
+                matrix[j][i]= t;
             }
         }
-         for(int i = 0;i<matrix.length;i++){
-            for(int j =0;j<matrix.length/2;j++){
-                int t=0;
-                t = matrix[i][j];
-                matrix[i][j] = matrix[i][matrix.length-1-j];
-                matrix[i][matrix.length-1-j] = t;
+        for(int i=0;i<r;i++){
+            for(int j =0;j<c/2;j++){
+                int t = matrix[i][c-j-1];
+                matrix[i][c-j-1] = matrix[i][j] ;
+                matrix[i][j]= t;
             }
         }
         
+    }
+}
+/*------------------------brute force-------------------*/
+// T.C = O(2*N*N)
+// S.C = O(N*N)
+class Solution {
+    public void rotate(int[][] matrix) {
+        
+        int r = matrix.length;
+        int c = matrix[0].length;
+        int[][] t = new int[c][c];
+        for(int i=0;i<r;i++){
+            for(int j=0;j<c;j++){
+                t[j][c-i-1] = matrix[i][j];
+            }
+        }
+        for(int i=0;i<r;i++){
+            for(int j=0;j<c;j++){
+                matrix[i][j] = t[i][j];
+            }
+        }
         
     }
 }
