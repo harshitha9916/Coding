@@ -1,25 +1,38 @@
+/*----------Approach -1 (Inplace)--------------*/
+// T.C = O(N+N+N)
+// S.C = O(1)
+
 class Solution {
-    public void nextPermutation(int[] A) {
+    public void nextPermutation(int[] a) {
         
-        if(A == null || A.length <= 1) return;
-        
-        int i = A.length -2;
-        while(i>=0 && A[i]>=A[i+1]) i--;
-        if(i>=0){
-            int j = A.length -1;
-            while(A[j]<=A[i]) j--;
-            swap(A,i,j);
+        int index=-1;
+        for(int i=a.length-2;i>=0;i--){
+            if(a[i]<a[i+1]){
+                index = i;
+                break;
+            }
         }
-        reverse(A,i+1,A.length-1);
+        int index2=-1;
+        if(index !=-1){
+            
+            for(int i=a.length-1;i>=index+1;i--){
+                if(a[index]<a[i]){
+                    index2 = i;
+                    break;
+                }
+            }
+
+           int t =  a[index];
+           a[index] = a[index2];
+           a[index2] = t;
+        }
         
-        
-    }
-    public void swap(int[] A,int i,int j){
-        int t = A[i];
-        A[i] = A[j];
-        A[j] = t;
-    }
-    public void reverse(int[] A,int i,int j){
-        while(i<j) swap(A,i++,j--);
+        int left = index+1;
+        int right= a.length-1;
+        while (left<right ) {
+                int temp = a[left];
+                a[left++] = a[right];
+                a[right--] = temp;
+        }       
     }
 }
