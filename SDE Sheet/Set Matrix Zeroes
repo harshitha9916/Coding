@@ -17,3 +17,55 @@ class Solution {
         }
     }
 }
+
+/*-----------------------------Brute Force------------------------------*/
+// T.C = O((N*M)*(N+M))
+//  S.C = O(1)
+class Solution {
+    public void setZeroes(int[][] matrix) {
+      
+        int rows = matrix.length;
+        int cols = matrix[0].length;
+        int count=0;
+        for(int i=0;i<rows;i++){
+            for(int j=0;j<cols;j++){
+                
+                if(matrix[i][j]==0){
+                    count++;
+                    int m = i-1;
+                    while(m>=0){
+                        if(matrix[m][j]!=0)
+                            matrix[m][j] = -1;
+                        m--;
+                    }
+                    m = i+1;
+                    while(m<rows){
+                        if(matrix[m][j]!=0)
+                            matrix[m][j] = -1;
+                        m++;
+                    }
+                    int n = j-1;
+                    while(n>=0){
+                        if(matrix[i][n]!=0)
+                            matrix[i][n] = -1;
+                        n--;
+                    }
+                    n = j+1;
+                    while(n<cols){
+                        if(matrix[i][n]!=0)
+                            matrix[i][n] = -1;
+                        n++;
+                    }
+                }
+                
+            }
+        }
+        
+        for(int i=0;i<rows;i++){
+            for(int j=0;j<cols;j++){
+                
+                if(matrix[i][j]==-1 && count>0){
+                    matrix[i][j]=0;
+                }}}    
+    }
+}
