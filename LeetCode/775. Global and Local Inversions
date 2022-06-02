@@ -1,0 +1,40 @@
+class Solution {
+    public int globalVersion(int[] nums){
+        int c=0;
+        for(int i=0;i<nums.length;i++){
+            for(int j=i+1;j<nums.length;j++){
+                if(nums[i]>nums[j]){
+                    c+=1;
+                   
+                }
+            }  
+        }
+            return c;
+        
+    }
+    public int localVersion(int[] nums){
+        int c=0;
+        for(int i=0;i<nums.length-1;i++){
+            
+                if(nums[i]>nums[i+1]){
+                    c+=1;
+                   
+            }  
+        }
+            return c;
+        }
+    
+    public boolean isIdealPermutation(int[] nums) {
+        int c1 = globalVersion(nums);
+        int c2 = localVersion(nums);
+        if(c1==c2){
+            return true;
+            
+        }
+        else{
+            return false;
+        }
+        
+        
+    }
+}
