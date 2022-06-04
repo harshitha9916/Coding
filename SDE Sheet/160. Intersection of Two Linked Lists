@@ -1,0 +1,90 @@
+/*---------------------Circulating-------------------------------*/
+T.C = O(2N)
+S.C = O(1)
+public class Solution {
+    public ListNode getIntersectionNode(ListNode headA, ListNode headB) {
+      ListNode a = headA;
+      ListNode b  = headB;
+        
+      while(headA != headB){
+          if(headA == null){
+              headA = b;
+          }
+          else{
+              headA = headA.next;
+          }
+           if(headB == null){
+              headB = a;
+          }
+          else{
+          headB = headB.next;}
+      }
+      return headA;
+
+
+    }
+}
+
+/*---------------------Calculating lengtn and moving dummy by diff-------------------------------*/
+T.C = O(N)+O(N-M)+O(M)
+S.C = O(1)
+public class Solution {
+    public ListNode getIntersectionNode(ListNode headA, ListNode headB) {
+       int c1=0,c2=0;
+       ListNode ha = headA;
+       ListNode hb = headB;
+       while(headA!=null || headB !=null){
+           if(headA!=null){
+               c1+=1;
+               headA = headA.next;
+                          }
+           if(headB !=null){
+               c2+=1;
+               headB = headB.next;
+           }
+       }
+        if(c2>c1){
+            int diff = c2-c1;
+            while(diff>0){
+                hb = hb.next;
+                diff=diff-1;
+            }
+        }
+        else{
+            int diff = c1-c2;
+            while(diff>0){
+                ha = ha.next;
+                diff=diff-1;
+            }
+        }
+        while(ha!=hb){
+            ha = ha.next;
+            hb = hb.next;
+        }
+        return hb;
+        
+    }
+    
+}
+
+/*---------------------naive approach------------------------------------*/
+T.C = O(M*N)
+S.C = O(1)
+public class Solution {
+    public ListNode getIntersectionNode(ListNode headA, ListNode headB) {
+        ListNode h = null;
+         while(headA!=null){
+             ListNode s = headB;
+             while(s!=null){
+                 if(headA == s){
+                     return s;
+                 }
+                 s = s.next;
+             }
+             headA = headA.next;
+         }
+        return h;
+        
+    }
+    
+}
