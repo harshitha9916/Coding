@@ -1,0 +1,87 @@
+/*------------------storng first m elements in org array using two pointers and then storing elements of 2nd arr in 1st arr--------------------*/
+// T.C = O(M+N) 
+
+class Solution {
+    public void merge(int[] nums1, int m, int[] nums2, int n) {
+        if(n==0) return;
+        //else if(m==0) return nums1;
+       int[] k = new int[n+m];
+       int k1=0;
+       int i=0,j=0;
+        while(i<m){
+            if(nums1[i]<nums2[j]){
+                i++;
+            }
+            else{
+                int t =nums1[i]; 
+                nums1[i] = nums2[j];
+                nums2[j] = t;
+                Arrays.sort(nums2);
+                i++;
+            }
+        }
+        for(int o = 0;o<n;o++){
+            nums1[i+o] = nums2[o];
+        }
+        
+    }
+}
+/*------------------transferring into new array using 2 pointers and replacing in org arr--------------------*/
+// T.C = O(M+N) + O(M+N)
+// S.C = O(M+N)
+
+class Solution {
+    public void merge(int[] nums1, int m, int[] nums2, int n) {
+       int[] k = new int[n+m];
+       int k1=0;
+       int i=0,j=0;
+        while(i<m && j<n){
+            if(nums1[i]<nums2[j]){
+                k[k1] = nums1[i];
+                i++;
+            }
+            else{
+                k[k1] = nums2[j];
+                j++;
+            }
+            k1=k1+1;
+        }
+        if(i!=m){
+            for(int u=i;u<m;u++){
+                k[k1] = nums1[u];
+                k1++;
+            }
+        }
+        if(j!=n){
+            for(int u=j;u<n;u++){
+                k[k1] = nums2[u];
+                k1++;
+            }
+        }
+        for(int o=0;o<n+m;o++){
+            nums1[o] = k[o];
+        }
+        
+    }
+}
+/*------------------transferring into new array, sorting an replacing into org array---------------------*/
+// T.C = O(M+N) +O((M+N)log(M+N)) + O(M+N)
+// S.C = O(M+N)
+class Solution {
+    public void merge(int[] nums1, int m, int[] nums2, int n) {
+        int[] k = new int[n+m];
+        int k1=0;
+        for(int i=0;i<m;i++){
+            k[k1] = nums1[i];
+            k1=k1+1;
+        }
+        for(int j=0;j<n;j++){
+            k[k1] = nums2[j];
+            k1=k1+1;
+        }
+        Arrays.sort(k);
+        for(int i=0;i<m+n;i++){
+            nums1[i] = k[i];
+        }      
+    }
+}
