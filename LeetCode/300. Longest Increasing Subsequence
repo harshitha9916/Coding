@@ -1,0 +1,44 @@
+*----------------Memoization---------------------*/
+class Solution{
+    public int l(int index, int prev_index, int[] arr, int n,int[][] dp){
+        
+        if(index == n){return 0;}
+        
+        int len=0;
+        if(dp[index][prev_index+1] !=-1) return dp[index][prev_index+1];
+        len =  0+l(index+1,prev_index,arr,n,dp);
+        if(prev_index == -1 || arr[index] > arr[prev_index]){
+              len = Math.max(len,1+l(index+1,index,arr,n,dp));
+        }
+        dp[index][prev_index+1] = len;
+        return len;
+        
+    }
+    
+    public int lengthOfLIS(int[] nums) {
+        int[][] dp = new int[nums.length][nums.length+1];
+        for (int[] row: dp)
+            Arrays.fill(row, -1);
+        return l(0,-1,nums,nums.length,dp);
+        
+    }
+}
+/*----------------recursion---------------------*/
+class Solution {
+    public int l(int index, int prev_index, int[] arr, int n){
+        if(index == n){return 0;}
+        int len=0;
+        len =  0+l(index+1,prev_index,arr,n);
+        if(prev_index == -1 || arr[index] > arr[prev_index]){
+              len = Math.max(len,1+l(index+1,index,arr,n));
+        }
+        return len;
+        
+    }
+    
+    public int lengthOfLIS(int[] nums) {
+        
+       return l(0,-1,nums,nums.length);
+        
+    }
+}
