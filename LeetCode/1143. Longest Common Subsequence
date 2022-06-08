@@ -1,0 +1,60 @@
+
+/*-----------------------bottom down --------------------------------*/
+class Solution {
+    public int longestCommonSubsequence(String text1, String text2) {
+        
+        int[][] dp = new int[text1.length() + 1][text2.length() + 1];
+        
+        for (int i = 1; i <= text1.length(); i++) {
+            for (int j = 1; j <= text2.length(); j++) {
+                
+                if (text1.charAt(i - 1) == text2.charAt(j - 1))
+                    dp[i][j] = 1 + dp[i - 1][j - 1];
+                else
+                    dp[i][j] = Math.max(dp[i - 1][j], dp[i][j - 1]);
+            }
+        }
+        return dp[text1.length()][text2.length()];
+    }
+}
+/*-----------------------top down --------------------------------*/
+class Solution {
+    public int l(String t1,int m, String t2,int n,int[][] dp){
+        
+        if(m<0 || n<0) return 0;
+        
+        if(dp[m][n] != 0) return dp[m][n];
+        
+        if(t1.charAt(m) == t2.charAt(n)){
+            return dp[m][n] =  1 + l(t1, m-1, t2, n-1,dp);
+        }
+        else{
+            return dp[m][n] = Math.max(l(t1, m-1, t2,n,dp),l(t1,m,t2,n-1,dp));
+        }
+    }
+    public int longestCommonSubsequence(String text1, String text2) {
+        
+        int m = text1.length(), n = text2.length();
+        int[][] dp = new int[m+1][n+1];
+        return l(text1,m-1,text2,n-1,dp);
+        
+    }
+}
+
+/*---------------------recursion------------------------------------*/
+class Solution {
+    public int l(String t1,int m, String t2,int n){
+        if(m<0 || n<0){return 0;}
+        if(t1.charAt(m) == t2.charAt(n)){
+            return 1 + l(t1, m-1, t2, n-1);
+        }
+        else{
+            return 0 + Math.max(l(t1, m-1, t2,n),l(t1,m,t2,n-1));
+        }
+    }
+    public int longestCommonSubsequence(String text1, String text2) {
+        int m = text1.length(), n = text2.length();
+        return l(text1,m-1,text2,n-1);
+        
+    }
+}
