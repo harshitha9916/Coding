@@ -1,0 +1,42 @@
+/*------------Iterative--------------*/
+
+class Solution {
+    public List<Integer> postorderTraversal(TreeNode root) {
+        
+        Stack<TreeNode> s1 = new Stack<>();
+        Stack<TreeNode> s2 = new Stack<>();
+        List<Integer> l = new ArrayList<>();
+        if(root==null) return l;
+        s1.add(root);
+        while(!s1.isEmpty()){
+            TreeNode t = s1.peek();
+            s1.pop();
+            s2.add(t);
+            if(t.left!=null) s1.push(t.left);
+            if(t.right!=null) s1.push(t.right);
+            
+        }
+        while(!s2.isEmpty()){
+            l.add(s2.pop().val);
+        }
+     return l;   
+    }
+}
+/*------------Recursion---------------*/
+
+class Solution {
+    public void rec(TreeNode root, List<Integer> res){
+        if(root==null) return ;
+        
+        rec(root.left,res);
+        rec(root.right,res);
+        res.add(root.val);
+    }
+    public List<Integer> postorderTraversal(TreeNode root) {
+        List<Integer> res = new ArrayList<>();
+        rec(root,res);
+        
+        return res;
+        
+    }
+}
