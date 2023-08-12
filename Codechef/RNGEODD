@@ -1,0 +1,8 @@
+l, r = map(int,input().split())
+if l%2==0:
+	for i in range(l+1,r+1,2):
+ 		print(i)
+else:
+	for i in range(l,r+1,2):
+ 		print(i)
+	
